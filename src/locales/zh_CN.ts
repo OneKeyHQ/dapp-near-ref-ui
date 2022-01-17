@@ -272,7 +272,7 @@ const zh_CN = {
   total_fee_create: '总费用',
   xref_title: '赚取更多收益通过',
   xref_introdution:
-    '通过质押REF，您有机会赚取协议产生的费用，任何REF持有人都可以分享REF Finance的收入。',
+    '通过质押REF，您有机会赚取协议产生的费用，任何REF持有人都可以分享REF Finance的收入。starts on 1am UTC, 18th Jan, 2022',
   staking_apr: '质押年化率',
   view_stats: '统计数据查看',
   xref: 'xREF',
@@ -287,7 +287,7 @@ const zh_CN = {
   deposit_to_ref_account: '存储到REF账户',
   withdraw_to_near_wallet: '提取到NEAR钱包',
   into_ref_account: '到你的REF账户。',
-  deposit_into_ref_account: '存储到REF账户来添加流动性',
+  deposit_into_ref_account: '到REF账户来添加流动性',
   deposit_near_tip: '存入时至少保留一个NEAR以支付汽油费',
   input_greater_than_available_shares: '输入大于可用份额',
   remove_to_ref_account: '移动到REF账户',
