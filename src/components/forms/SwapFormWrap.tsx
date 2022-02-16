@@ -64,6 +64,8 @@ export default function SwapFormWrap({
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    event.stopPropagation();
+
     setError(null);
 
     if (wallet.isSignedIn()) {

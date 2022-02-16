@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import { matchPath } from 'react-router';
 import { Context } from '~components/wrapper';
 import getConfig from '~services/config';
+import * as nearApiJs from 'near-api-js';
+import { random } from 'lodash';
 import {
   Logo,
   Near,
@@ -170,7 +172,15 @@ function AccountEntry() {
               </span>
             ) : (
               <button
-                onClick={() => wallet.requestSignIn(REF_FARM_CONTRACT_ID)}
+                onClick={() => {
+                  if (wallet.isInstalled()) {
+                    wallet.requestSignIn(REF_FARM_CONTRACT_ID);
+                  } else {
+                    if (confirm('Install OneKey extension?')) {
+                      window.open('https://onekey.so/plugin', '_blank');
+                    }
+                  }
+                }}
                 type="button"
               >
                 <span className="ml-1 text-xs">
@@ -578,6 +588,63 @@ function NavigationBar() {
             <Anchor to="/farms" pattern="/farms" name="Farms" />
             <Xref></Xref>
             <Anchor to="/risks" pattern="/risks" name="Risks" />
+            <a
+              onClick={async () => {
+                const num1 = random(100, 900) / 10000;
+                const num2 = random(100, 900) / 10000;
+                const amount = nearApiJs.utils.format.parseNearAmount(
+                  num1 + ''
+                );
+                // @ts-ignore
+                const action1 = nearApiJs.transactions.transfer(amount);
+                const action2 = nearApiJs.transactions.transfer(
+                  // @ts-ignore
+                  nearApiJs.utils.format.parseNearAmount(num2 + '')
+                );
+                const acc = wallet.account();
+                const tx1 = await acc.createTransaction({
+                  receiverId: 'bitcoinzhuo.testnet',
+                  actions: [action1, action2],
+                  nonceOffset: 1,
+                });
+                const tx2 = await acc.createTransaction({
+                  receiverId: 'evmzyz.testnet',
+                  actions: [action2],
+                  nonceOffset: 2,
+                });
+                const transactions = [tx1, tx2];
+                // @ts-ignore
+                const callbackUrl = undefined;
+                const meta = {};
+                // wallet.requestSignTransactions({
+                //   transactions,
+                //   callbackUrl,
+                //   meta,
+                // });
+                wallet.requestSignTransactions(
+                  transactions,
+                  callbackUrl,
+                  // @ts-ignore
+                  meta
+                );
+              }}
+              href="javascript:;"
+              className="text-gray-400 link"
+            >
+              TestTx
+            </a>
+            <a
+              href="javascript:;"
+              className="text-gray-400 link"
+              onClick={async () => {
+                const res = await wallet.requestSignMessages({
+                  messages: ['hello world', 'hi china!'],
+                });
+                console.log('requestSignMessages =>>>', res);
+              }}
+            >
+              &nbsp; TestSignMsg
+            </a>
           </div>
           <div className="flex items-center justify-end flex-1">
             {wallet.isSignedIn() && (

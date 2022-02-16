@@ -1,8 +1,9 @@
-import { Near, keyStores, utils } from 'near-api-js';
+import { Near, keyStores, utils, connect, transactions } from 'near-api-js';
 import { functionCall } from 'near-api-js/lib/transaction';
 import BN from 'bn.js';
 import getConfig from './config';
 import SpecialWallet from './SpecialWallet';
+import { OneKeyNearWallet } from '@onekeyfe/onekey-near-wallet';
 
 const config = getConfig();
 
@@ -34,7 +35,45 @@ export const near = new Near({
   headers: {},
   ...config,
 });
-export const wallet = new SpecialWallet(near, config.REF_FI_CONTRACT_ID);
+// export const webWallet = new SpecialWallet(near, config.REF_FI_CONTRACT_ID);
+export const wallet = new OneKeyNearWallet({
+  connection: near.connection,
+  networkId: near.config.networkId,
+  keyPrefix: config.REF_FI_CONTRACT_ID,
+  enablePageReload: true,
+  transactionCreator: ({
+    accountId,
+    publicKey,
+    receiverId,
+    nonce,
+    actions,
+    blockHash,
+  }) => {
+    const publicKeyBuffer = utils.PublicKey.fromString(publicKey);
+    return transactions.createTransaction(
+      accountId,
+      publicKeyBuffer,
+      receiverId,
+      nonce,
+      actions,
+      blockHash
+    );
+  },
+});
+if (wallet.isOneKey) {
+  wallet.on('near#initialized', () => {
+    console.log('detect wallet installed');
+  });
+  wallet.on('networkChanged', (p: any) =>
+    console.log('networkChanged >>>>>', p)
+  );
+  wallet.on('accountsChanged', (p: any) =>
+    console.log('accountsChanged >>>>>', p)
+  );
+  wallet.on('unlockChanged', (p: any) => console.log('unlockChanged >>>>>', p));
+}
+// @ts-ignore
+window.$specialWallet = wallet;
 
 export const getGas = (gas: string) =>
   gas ? new BN(gas) : new BN('100000000000000');
@@ -82,9 +121,10 @@ export const refFiManyFunctionCalls = (
     functionCall(fc.methodName, fc.args, getGas(fc.gas), getAmount(fc.amount))
   );
 
-  return wallet
-    .account()
-    .sendTransactionWithActions(REF_FI_CONTRACT_ID, actions);
+  return wallet.account().signAndSendTransaction({
+    receiverId: REF_FI_CONTRACT_ID,
+    actions,
+  });
 };
 
 export interface Transaction {
@@ -113,7 +153,10 @@ export const executeMultipleTransactions = async (
     })
   );
 
-  return wallet.requestSignTransactions(nearTransactions, callbackUrl);
+  return wallet.requestSignTransactions({
+    transactions: nearTransactions,
+    callbackUrl,
+  });
 };
 
 export const refFarmFunctionCall = ({
@@ -147,9 +190,10 @@ export const refFarmManyFunctionCalls = (
     functionCall(fc.methodName, fc.args, getGas(fc.gas), getAmount(fc.amount))
   );
 
-  return wallet
-    .account()
-    .sendTransactionWithActions(REF_FARM_CONTRACT_ID, actions);
+  return wallet.account().signAndSendTransaction({
+    receiverId: REF_FARM_CONTRACT_ID,
+    actions,
+  });
 };
 
 export const executeFarmMultipleTransactions = async (
@@ -173,7 +217,10 @@ export const executeFarmMultipleTransactions = async (
     })
   );
 
-  return wallet.requestSignTransactions(nearTransactions, callbackUrl);
+  return wallet.requestSignTransactions({
+    transactions: nearTransactions,
+    callbackUrl,
+  });
 };
 
 export interface RefContractViewFunctionOptions

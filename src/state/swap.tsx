@@ -108,6 +108,7 @@ export const useSwap = ({
       checkTransaction(txHash)
         .then(({ transaction }) => {
           return (
+            transaction?.actions?.[0]?.Transfer?.deposit || // transfer
             transaction?.actions[1]?.['FunctionCall']?.method_name ===
               'ft_transfer_call' ||
             transaction?.actions[0]?.['FunctionCall']?.method_name ===

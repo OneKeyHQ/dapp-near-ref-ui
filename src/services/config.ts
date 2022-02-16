@@ -1,4 +1,6 @@
 export function getExtendConfig(env: string = process.env.NEAR_ENV) {
+  env = env || process.env.NEAR_ENV
+  console.log('process.env.NEAR_ENV',process.env.NEAR_ENV);
   switch (env) {
     case 'production':
     case 'mainnet':
@@ -44,6 +46,7 @@ export function getExtendConfig(env: string = process.env.NEAR_ENV) {
   }
 }
 export default function getConfig(env: string = process.env.NEAR_ENV) {
+  env = env || process.env.NEAR_ENV
   const RPC_LIST = getExtendConfig().RPC_LIST;
   let endPoint = 'defaultRpc';
   try {

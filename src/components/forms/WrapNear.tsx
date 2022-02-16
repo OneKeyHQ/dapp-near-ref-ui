@@ -93,6 +93,8 @@ function WrapNear(props: ReactModal.Props) {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    e.stopPropagation();
+
     if (tokenIn?.id === 'NEAR') {
       setButtonLoading(true);
       return nearDeposit(tokenInAmount);

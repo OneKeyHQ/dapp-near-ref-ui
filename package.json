@@ -4,6 +4,8 @@
   "license": "MIT OR Apache-2.0",
   "scripts": {
     "build": "parcel build src/index.html",
+    "build-gh-pages": "yarn build --public-url /",
+    "build-gh-pages-2": "yarn build --public-url /dapp-near-ref-ui",
     "build:testnet": "NEAR_ENV=testnet parcel build src/index.html",
     "start": "parcel src/index.html",
     "start:mainnet": "NEAR_ENV=mainnet parcel src/index.html",
@@ -11,7 +13,8 @@
     "prettier": "prettier --check src",
     "prettier:fix": "prettier --write src",
     "test": "jest test --runInBand",
-    "test:watch": "yarn test --watch"
+    "test:watch": "yarn test --watch",
+    "clean": "rm -rf ./.cache/ && rm -rf ./dist/"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -79,7 +82,8 @@
     "react-spinners": "^0.11.0",
     "react-toastify": "^8.0.2",
     "react-tooltip": "^4.2.17",
-    "recharts": "^2.1.6"
+    "recharts": "^2.1.6",
+    "@onekeyfe/onekey-near-wallet": "^0.0.1"
   },
   "browserslist": [
     "last 2 Chrome versions"
