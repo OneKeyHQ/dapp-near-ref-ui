@@ -3,7 +3,7 @@ import { functionCall } from 'near-api-js/lib/transaction';
 import BN from 'bn.js';
 import getConfig from './config';
 import SpecialWallet from './SpecialWallet';
-import { OneKeyNearWallet } from '@onekeyfe/onekey-near-wallet';
+import { OneKeyNearProvider } from '@onekeyfe/onekey-near-provider';
 
 const config = getConfig();
 
@@ -36,29 +36,14 @@ export const near = new Near({
   ...config,
 });
 // export const webWallet = new SpecialWallet(near, config.REF_FI_CONTRACT_ID);
-export const wallet = new OneKeyNearWallet({
+// TODO enable/disable ext and refresh dapp
+export const wallet = new OneKeyNearProvider({
   connection: near.connection,
   networkId: near.config.networkId,
   keyPrefix: config.REF_FI_CONTRACT_ID,
+  connectEagerly: false,
   enablePageReload: true,
-  transactionCreator: ({
-    accountId,
-    publicKey,
-    receiverId,
-    nonce,
-    actions,
-    blockHash,
-  }) => {
-    const publicKeyBuffer = utils.PublicKey.fromString(publicKey);
-    return transactions.createTransaction(
-      accountId,
-      publicKeyBuffer,
-      receiverId,
-      nonce,
-      actions,
-      blockHash
-    );
-  },
+  // shouldSendMetadata: true,
 });
 if (wallet.isOneKey) {
   wallet.on('near#initialized', () => {

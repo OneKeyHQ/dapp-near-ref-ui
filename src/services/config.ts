@@ -1,6 +1,5 @@
 export function getExtendConfig(env: string = process.env.NEAR_ENV) {
   env = env || process.env.NEAR_ENV
-  console.log('process.env.NEAR_ENV',process.env.NEAR_ENV);
   switch (env) {
     case 'production':
     case 'mainnet':
