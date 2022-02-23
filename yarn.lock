@@ -1564,46 +1564,46 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@onekeyfe/cross-inpage-provider-core@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@onekeyfe/cross-inpage-provider-core/-/cross-inpage-provider-core-0.0.2.tgz#13980895a94fa973b9cf362eb93cc522cacc2d0b"
-  integrity sha512-xw0E6rgieXc+9SNnPVYNE9jB1Fx0hYXQJAeXQy1smAE+6pLhhO6xiz5YFsBVuiOZszSr2OU6/22wClt5FtDfmA==
+"@onekeyfe/cross-inpage-provider-core@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@onekeyfe/cross-inpage-provider-core/-/cross-inpage-provider-core-0.0.6.tgz#ee5534c6a6678b3afd0725146c082897373ca29c"
+  integrity sha512-qwsyhsAeKs8NxGZ7HJeyJ7q85NerymHdgkScI1wkddQrIJU9nB4yYZKOZ4oamf4wnAfgr8vekcmerHQk0vGCzA==
   dependencies:
-    "@onekeyfe/cross-inpage-provider-errors" "^0.0.2"
-    "@onekeyfe/cross-inpage-provider-types" "^0.0.2"
+    "@onekeyfe/cross-inpage-provider-errors" "^0.0.6"
+    "@onekeyfe/cross-inpage-provider-types" "^0.0.6"
     eventemitter3 "^4.0.7"
     lodash "^4.17.21"
     ms "^2.1.3"
 
-"@onekeyfe/cross-inpage-provider-errors@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@onekeyfe/cross-inpage-provider-errors/-/cross-inpage-provider-errors-0.0.2.tgz#8f6c4b6a8f8bedc7b1d91aeb06456c3bf52d137e"
-  integrity sha512-hvUwF1BKjbEpQ2iSihHQQCHEz83p6n2829k4CttBhQcv+RkQ28k0FdjawZs8jfGvWpui+Cs7lq87TvgRxUUFXg==
+"@onekeyfe/cross-inpage-provider-errors@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@onekeyfe/cross-inpage-provider-errors/-/cross-inpage-provider-errors-0.0.6.tgz#a841afdda2d054f91ce576170f440586c92ecb04"
+  integrity sha512-dKT/EIHGG+jhgkQULDVh6wuvHmZlLOjQzrB6h1+oJlcPF0tkHuPD3itIzw9jxE1WTz7NdNN66j1q3aFg6WYzUg==
   dependencies:
     fast-safe-stringify "^2.1.1"
 
-"@onekeyfe/cross-inpage-provider-types@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@onekeyfe/cross-inpage-provider-types/-/cross-inpage-provider-types-0.0.2.tgz#1f9552dcf4815720a70eb01a477a57ad4beaf094"
-  integrity sha512-YGayWhSlSh1r4cX56LTN/lwkluPEZ8B9z7790ogTWe3ZP9xKnfNKdu4Qc0s4twDwebevHyqgAwlRxpRMPJ4WjQ==
+"@onekeyfe/cross-inpage-provider-types@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@onekeyfe/cross-inpage-provider-types/-/cross-inpage-provider-types-0.0.6.tgz#37c5ec72a16ab89f8d40c0c85c2b99fe40816efc"
+  integrity sha512-1CyXSRyGE4KPz70dKM3EVutwsZr1NiyvTx4RfXJ2F23+L/FHq79MhaLN4OuC1adESumIAWFEBGIe4YYvYWGeEg==
 
-"@onekeyfe/extension-bridge-injected@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@onekeyfe/extension-bridge-injected/-/extension-bridge-injected-0.0.2.tgz#96c0164b67c309f50505dee677369140c3a09b02"
-  integrity sha512-QhsVfRtftBMk8hNSClZ+Hld3zgKTTyytRg24S/WfcRswLj+8za65m+vW/e5nHJN7AcF5xXY9ZI0RLwaDoegkhQ==
+"@onekeyfe/extension-bridge-injected@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@onekeyfe/extension-bridge-injected/-/extension-bridge-injected-0.0.6.tgz#1490a6b75585ca517073c50a757d2ab6a2b163da"
+  integrity sha512-slLA6RNvrFrjXQzyFWYy1H+Th98jOu0dHiLIyH5H66oPQ8357H+WztEpSG8cfPx0jvJtdNslcLXP1NSfdl+Chw==
   dependencies:
-    "@onekeyfe/cross-inpage-provider-core" "^0.0.2"
-    "@onekeyfe/cross-inpage-provider-types" "^0.0.2"
+    "@onekeyfe/cross-inpage-provider-core" "^0.0.6"
+    "@onekeyfe/cross-inpage-provider-types" "^0.0.6"
 
-"@onekeyfe/onekey-near-provider@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@onekeyfe/onekey-near-provider/-/onekey-near-provider-0.0.2.tgz#621523f841bd0a461d350e1b30447490e293f5b0"
-  integrity sha512-1fWGZOlgNSXRXPpG1sZT3xroIeM9y52wf0o+K2+Bvw6tF3QPpdj9vowzu/koCZrnr0BWSp8qU3M6TL9lPqkxOQ==
+"@onekeyfe/onekey-near-provider@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@onekeyfe/onekey-near-provider/-/onekey-near-provider-0.0.6.tgz#c484d8136084a6d00a1646398ea9e153ac8c71e5"
+  integrity sha512-RhXpsLzAMlGAo21Zg33u7RiKcHpTnwDWlsdNZXE1+UzrHPOfmS+q6Ual531NGTYPhHDocMqirhFWwb/1AYyNSA==
   dependencies:
-    "@onekeyfe/cross-inpage-provider-core" "^0.0.2"
-    "@onekeyfe/cross-inpage-provider-errors" "^0.0.2"
-    "@onekeyfe/cross-inpage-provider-types" "^0.0.2"
-    "@onekeyfe/extension-bridge-injected" "^0.0.2"
+    "@onekeyfe/cross-inpage-provider-core" "^0.0.6"
+    "@onekeyfe/cross-inpage-provider-errors" "^0.0.6"
+    "@onekeyfe/cross-inpage-provider-types" "^0.0.6"
+    "@onekeyfe/extension-bridge-injected" "^0.0.6"
     borsh "^0.6.0"
     depd "^2.0.0"
     tweetnacl "^1.0.3"

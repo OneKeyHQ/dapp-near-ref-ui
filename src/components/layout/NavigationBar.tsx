@@ -173,7 +173,8 @@ function AccountEntry() {
             ) : (
               <button
                 onClick={() => {
-                  if (wallet.isInstalled()) {
+                  // @ts-ignore
+                  if (!wallet.isInstalled || wallet.isInstalled()) {
                     wallet.requestSignIn(REF_FARM_CONTRACT_ID);
                   } else {
                     if (confirm('Install OneKey extension?')) {
@@ -615,18 +616,18 @@ function NavigationBar() {
                 const transactions = [tx1, tx2];
                 // @ts-ignore
                 const callbackUrl = undefined;
-                const meta = {};
+                const meta = '';
                 // wallet.requestSignTransactions({
                 //   transactions,
                 //   callbackUrl,
                 //   meta,
                 // });
-                wallet.requestSignTransactions(
+                wallet.requestSignTransactions({
                   transactions,
                   callbackUrl,
                   // @ts-ignore
-                  meta
-                );
+                  meta,
+                });
               }}
               href="javascript:;"
               className="text-gray-400 link"
@@ -634,9 +635,37 @@ function NavigationBar() {
               TestTx
             </a>
             <a
+              onClick={async () => {
+                const num1 = random(100, 900) / 10000;
+                const num2 = random(100, 900) / 10000;
+                const amount = nearApiJs.utils.format.parseNearAmount(
+                  num1 + ''
+                );
+                // @ts-ignore
+                const action1 = nearApiJs.transactions.transfer(amount);
+                const action2 = nearApiJs.transactions.transfer(
+                  // @ts-ignore
+                  nearApiJs.utils.format.parseNearAmount(num2 + '')
+                );
+                const acc = wallet.account();
+                acc
+                  // @ts-ignore
+                  .signAndSendTransaction({
+                    receiverId: 'evmzyz.testnet',
+                    actions: [action1, action2],
+                  })
+                  .then(console.log);
+              }}
+              href="javascript:;"
+              className="text-gray-400 link"
+            >
+              &nbsp;TestTx2
+            </a>
+            <a
               href="javascript:;"
               className="text-gray-400 link"
               onClick={async () => {
+                // @ts-ignore
                 const res = await wallet.requestSignMessages({
                   messages: ['hello world', 'hi china!'],
                 });

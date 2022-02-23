@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Near, keyStores, utils, connect, transactions } from 'near-api-js';
 import { functionCall } from 'near-api-js/lib/transaction';
 import BN from 'bn.js';
@@ -35,8 +36,8 @@ export const near = new Near({
   headers: {},
   ...config,
 });
-// export const webWallet = new SpecialWallet(near, config.REF_FI_CONTRACT_ID);
-// TODO enable/disable ext and refresh dapp
+// export const wallet = new SpecialWallet(near, config.REF_FI_CONTRACT_ID);
+/* */
 export const wallet = new OneKeyNearProvider({
   connection: near.connection,
   networkId: near.config.networkId,
@@ -45,6 +46,7 @@ export const wallet = new OneKeyNearProvider({
   enablePageReload: true,
   // shouldSendMetadata: true,
 });
+
 if (wallet.isOneKey) {
   wallet.on('near#initialized', () => {
     console.log('detect wallet installed');
@@ -57,6 +59,7 @@ if (wallet.isOneKey) {
   );
   wallet.on('unlockChanged', (p: any) => console.log('unlockChanged >>>>>', p));
 }
+
 // @ts-ignore
 window.$specialWallet = wallet;
 
